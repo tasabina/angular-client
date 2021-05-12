@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -26,3 +26,7 @@ export class ErrorInterceptorService implements HttpInterceptor{
     }));
   }
 }
+
+export const authErrorInterceptorProvider = [
+  { provide: HTTP_INTERCEPTORS, userClass: ErrorInterceptorService, multi: true }
+];
